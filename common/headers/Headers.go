@@ -1,7 +1,7 @@
 package headers
 
 import (
-	"papillon/common/errorx"
+	"papillon/errorx"
 )
 
 type Headers interface {

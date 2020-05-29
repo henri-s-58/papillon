@@ -3,7 +3,7 @@ package headers
 import (
 	"fmt"
 	"go.uber.org/atomic"
-	"papillon/common/errorx"
+	"papillon/errorx"
 )
 
 type RecordHeaders struct {

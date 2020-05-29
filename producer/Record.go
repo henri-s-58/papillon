@@ -2,9 +2,9 @@ package producer
 
 import (
 	"fmt"
-	"papillon/common/errorx"
 	"papillon/common/headers"
 	"papillon/common/partition"
+	"papillon/errorx"
 	"reflect"
 	"time"
 )
