@@ -1,4 +1,4 @@
-package common
+package headers
 
 type Header interface {
 	Key() string

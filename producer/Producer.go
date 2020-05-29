@@ -1,6 +1,7 @@
 package producer
 
 import (
+	"context"
 	. "papillon/common"
 	"time"
 )
@@ -15,5 +16,5 @@ type Producer interface {
 	Flush()
 	PartitionsFor(topic string) []PartitionInfo
 	Close(timeout time.Duration)
-	Send(record Record, callback Callback) <-chan RecordMetadata
+	Send(ctx context.Context, record *Record, callback Callback) <-chan *RecordMetadata
 }

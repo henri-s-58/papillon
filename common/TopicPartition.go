@@ -1,6 +1,7 @@
 package common
 
 import (
+	"papillon/common/partition"
 	"papillon/support"
 	"reflect"
 	"strconv"
@@ -8,11 +9,11 @@ import (
 
 type TopicPartition struct {
 	hash      int64
-	partition int
+	partition partition.Partition
 	topic     string
 }
 
-func NewTopicPartition(topic string, partition int) TopicPartition {
+func NewTopicPartition(topic string, partition partition.Partition) TopicPartition {
 	return TopicPartition{
 		hash:      0,
 		partition: partition,
@@ -20,7 +21,7 @@ func NewTopicPartition(topic string, partition int) TopicPartition {
 	}
 }
 
-func (t TopicPartition) Partition() int {
+func (t TopicPartition) Partition() partition.Partition {
 	return t.partition
 }
 
@@ -36,7 +37,7 @@ func (t TopicPartition) HashCode() int64 {
 		prime  int64 = 31
 		result int64 = 1
 	)
-	result = prime*result + int64(t.partition)
+	result = prime*result + int64(t.partition.Val())
 	result = prime*result + support.StrToHashCode(t.topic)
 	t.hash = result
 	return result
@@ -47,5 +48,5 @@ func (t TopicPartition) Equals(other interface{}) bool {
 }
 
 func (t TopicPartition) String() string {
-	return t.topic + "-" + strconv.Itoa(t.partition)
+	return t.topic + "-" + strconv.Itoa(t.partition.Val())
 }
