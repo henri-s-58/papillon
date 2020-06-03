@@ -24,7 +24,7 @@ func TestNewFieldFloat64WithDefault(t *testing.T) {
 	cut, err := types.NewFieldFloat64WithDefault(
 		"TestFloat64",
 		"int64 test doc",
-		-64,
+		-64.0,
 	)
 	if err != nil {
 		t.Fatalf("err: %v", err)
@@ -35,7 +35,7 @@ func TestNewFieldFloat64WithDefault(t *testing.T) {
 	if !cut.HasDefaultValue() {
 		t.Fatalf("want: has default value")
 	}
-	if int64(-64) != cut.DefaultValue() {
+	if -64.0 != cut.DefaultValue() {
 		t.Fatalf("DefaultValue: %v", cut.DefaultValue())
 	}
 }
