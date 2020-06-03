@@ -22,44 +22,47 @@ func NewFieldInt8WithDefault(name string, docString string, defaultValue int8) (
 	return &FieldInt8{*f}, nil
 }
 
-var INT8 DocumentedTyp = typINT8{}
+var INT8 DocumentedTyp = TypINT8{}
 
-type typINT8 struct {
+type TypINT8 struct {
 }
 
-func (t typINT8) String() string {
+func (t TypINT8) String() string {
 	return t.TypName()
 }
 
-func (t typINT8) Documentation() string {
+func (t TypINT8) Documentation() string {
 	return "Represents an integer between -2<sup>7</sup> and 2<sup>7</sup>-1 inclusive."
 }
 
-func (t typINT8) TypName() string {
+func (t TypINT8) TypName() string {
 	return "INT8"
 }
 
-func (t typINT8) Validate(i interface{}) (interface{}, SchemaError) {
-	b, ok := i.(int8)
-	if ok {
+func (t TypINT8) Validate(i interface{}) (interface{}, SchemaError) {
+	if b, ok := i.(int8); ok {
 		return b, nil
+	}
+	if c, ok := i.(uint8); ok {
+		return c, nil
 	}
 	return nil, NewSchemaErrorf("%v is not a int8.", i)
 }
 
-func (t typINT8) Write(buf *bytes.Buffer, i interface{}) SchemaError {
+func (t TypINT8) Write(buf *bytes.Buffer, i interface{}) SchemaError {
 	v, err := t.Validate(i)
 	if err != nil {
 		return err
 	}
-	err = buf.WriteByte(v.(uint8))
+	val, _ := v.(int8)
+	err = buf.WriteByte(uint8(val))
 	if err != nil {
-		return SchemaError(err)
+		return err
 	}
 	return nil
 }
 
-func (t typINT8) Read(buf *bytes.Buffer) (interface{}, SchemaError) {
+func (t TypINT8) Read(buf *bytes.Buffer) (interface{}, SchemaError) {
 	bs := buf.Bytes()
 	if len(bs) != 1 {
 		return nil, NewSchemaErrorf("%v is not a int8.", bs)
@@ -67,21 +70,21 @@ func (t typINT8) Read(buf *bytes.Buffer) (interface{}, SchemaError) {
 	if _, err := t.Validate(bs[0]); err != nil {
 		return nil, err
 	}
-	return bs[0], nil
+	return int8(bs[0]), nil
 }
 
-func (t typINT8) SizeOf(i interface{}) int {
+func (t TypINT8) SizeOf(i interface{}) int {
 	return 1
 }
 
-func (t typINT8) IsNullable() bool {
+func (t TypINT8) IsNullable() bool {
 	return false
 }
 
-func (t typINT8) ArrayElementType() Typ {
+func (t TypINT8) ArrayElementType() Typ {
 	return nil
 }
 
-func (t typINT8) IsArray() bool {
+func (t TypINT8) IsArray() bool {
 	return false
 }

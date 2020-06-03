@@ -40,3 +40,23 @@ func NewField2(name string, typ Typ, docString string, defaultValue interface{})
 func NewField3(name string, typ Typ) (*Field, SchemaError) {
 	return NewField(name, typ, "", false, nil)
 }
+
+func (f *Field) Name() string {
+	return f.name
+}
+
+func (f *Field) DocString() string {
+	return f.docString
+}
+
+func (f *Field) Typ() Typ {
+	return f.typ
+}
+
+func (f *Field) HasDefaultValue() bool {
+	return f.hasDefaultValue
+}
+
+func (f *Field) DefaultValue() interface{} {
+	return f.defaultValue
+}
