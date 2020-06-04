@@ -78,7 +78,7 @@ func (t TypFLOAT64) SizeOf(i interface{}) int {
 	return 8
 }
 
-func (t TypFLOAT64) IsNullable() bool {
+func (t TypFLOAT64) IsNilable() bool {
 	return false
 }
 

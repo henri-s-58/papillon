@@ -6,47 +6,47 @@ import (
 	"math"
 )
 
-type FieldNullableString struct {
+type FieldNilableString struct {
 	Field
 }
 
-func NewFieldNullableString(name string, docString string) (*FieldNullableString, SchemaError) {
-	f, err := NewField(name, STRING, docString, false, nil)
+func NewFieldNilableString(name string, docString string) (*FieldNilableString, SchemaError) {
+	f, err := NewField(name, NILABLE_STRING, docString, false, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &FieldNullableString{*f}, nil
+	return &FieldNilableString{*f}, nil
 }
 
-func NewFieldNullableStringWithDefault(name string, docString string, defaultValue string) (*FieldNullableString, SchemaError) {
+func NewFieldNilableStringWithDefault(name string, docString string, defaultValue string) (*FieldNilableString, SchemaError) {
 	f, err := NewField(name, STRING, docString, true, defaultValue)
 	if err != nil {
 		return nil, err
 	}
-	return &FieldNullableString{*f}, nil
+	return &FieldNilableString{*f}, nil
 }
 
-var NULLABLE_STRING DocumentedTyp = TypNULLABLE_STRING{}
+var NILABLE_STRING DocumentedTyp = TypNILABLE_STRING{}
 
-type TypNULLABLE_STRING struct {
+type TypNILABLE_STRING struct {
 }
 
-func (t TypNULLABLE_STRING) String() string {
+func (t TypNILABLE_STRING) String() string {
 	return t.TypName()
 }
 
-func (t TypNULLABLE_STRING) Documentation() string {
+func (t TypNILABLE_STRING) Documentation() string {
 	return `Represents a sequence of characters or null. For non-null strings,
 first the length N is given as an INT16.
 Then N bytes follow which are the UTF-8 encoding of the character sequence.
 A null value is encoded with length of -1 and there are no following bytes.`
 }
 
-func (t TypNULLABLE_STRING) TypName() string {
-	return "NULLABLE_STRING"
+func (t TypNILABLE_STRING) TypName() string {
+	return "NILABLE_STRING"
 }
 
-func (t TypNULLABLE_STRING) Validate(i interface{}) (interface{}, SchemaError) {
+func (t TypNILABLE_STRING) Validate(i interface{}) (interface{}, SchemaError) {
 	if i == nil {
 		return nil, nil
 	}
@@ -59,7 +59,7 @@ func (t TypNULLABLE_STRING) Validate(i interface{}) (interface{}, SchemaError) {
 	return nil, NewSchemaErrorf("%v is not a string.", i)
 }
 
-func (t TypNULLABLE_STRING) Write(buf *bytes.Buffer, i interface{}) SchemaError {
+func (t TypNILABLE_STRING) Write(buf *bytes.Buffer, i interface{}) SchemaError {
 	if i == nil {
 		b := make([]byte, 2)
 		i16 := int16(-1)
@@ -89,7 +89,7 @@ func (t TypNULLABLE_STRING) Write(buf *bytes.Buffer, i interface{}) SchemaError 
 	return nil
 }
 
-func (t TypNULLABLE_STRING) Read(buf *bytes.Buffer) (interface{}, SchemaError) {
+func (t TypNILABLE_STRING) Read(buf *bytes.Buffer) (interface{}, SchemaError) {
 	lengthBytes := buf.Next(2)
 	length := int16(binary.BigEndian.Uint16(lengthBytes))
 	if length < 0 {
@@ -106,21 +106,21 @@ func (t TypNULLABLE_STRING) Read(buf *bytes.Buffer) (interface{}, SchemaError) {
 	return string(bs), nil
 }
 
-func (t TypNULLABLE_STRING) SizeOf(i interface{}) int {
+func (t TypNILABLE_STRING) SizeOf(i interface{}) int {
 	if i == nil {
 		return 2
 	}
 	return 2 + len(i.(string))
 }
 
-func (t TypNULLABLE_STRING) IsNullable() bool {
+func (t TypNILABLE_STRING) IsNilable() bool {
 	return true
 }
 
-func (t TypNULLABLE_STRING) ArrayElementType() Typ {
+func (t TypNILABLE_STRING) ArrayElementType() Typ {
 	return nil
 }
 
-func (t TypNULLABLE_STRING) IsArray() bool {
+func (t TypNILABLE_STRING) IsArray() bool {
 	return false
 }

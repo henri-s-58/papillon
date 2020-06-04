@@ -95,7 +95,7 @@ func (t TypSTRING) SizeOf(i interface{}) int {
 	return 2 + len(i.(string))
 }
 
-func (t TypSTRING) IsNullable() bool {
+func (t TypSTRING) IsNilable() bool {
 	return false
 }
 

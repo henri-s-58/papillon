@@ -6,12 +6,12 @@ import (
 	"testing"
 )
 
-func TestNewFieldNullableString(t *testing.T) {
-	cut, err := types.NewFieldNullableString("TestNullableString", "Nullable string test doc")
+func TestNewFieldCompactNilableString(t *testing.T) {
+	cut, err := types.NewFieldCompactNilableString("TestNilableString", "Nilable string test doc")
 	if err != nil {
 		t.Fatalf("err: %v", err)
 	}
-	if cut.Name() != "TestNullableString" {
+	if cut.Name() != "TestNilableString" {
 		t.Fatalf("cut name: %v", cut.Name())
 	}
 	if cut.HasDefaultValue() {
@@ -19,28 +19,28 @@ func TestNewFieldNullableString(t *testing.T) {
 	}
 }
 
-func TestNewFieldNullableStringWithDefault(t *testing.T) {
-	cut, err := types.NewFieldNullableStringWithDefault(
-		"TestNullableString",
-		"Nullable string test doc",
-		"hello Nullable string",
+func TestNewFieldCompactNilableStringWithDefault(t *testing.T) {
+	cut, err := types.NewFieldCompactNilableStringWithDefault(
+		"TestNilableString",
+		"Nilable string test doc",
+		"hello Nilable string",
 	)
 	if err != nil {
 		t.Fatalf("err: %v", err)
 	}
-	if cut.Name() != "TestNullableString" {
+	if cut.Name() != "TestNilableString" {
 		t.Fatalf("cut name: %v", cut.Name())
 	}
 	if !cut.HasDefaultValue() {
 		t.Fatalf("want: has default value")
 	}
-	if "hello Nullable string" != cut.DefaultValue() {
+	if "hello Nilable string" != cut.DefaultValue() {
 		t.Fatalf("DefaultValue: %v", cut.DefaultValue())
 	}
 }
 
-func TestTypNULLABLE_STRING_WriteAndRead(t *testing.T) {
-	cut := types.TypNULLABLE_STRING{}
+func TestTypCOMPACT_NILABLE_STRING_WriteAndRead(t *testing.T) {
+	cut := types.TypCOMPACT_NILABLE_STRING{}
 	buf := &bytes.Buffer{}
 	for _, i := range []interface{}{nil, "Hello", "세계", "!"} {
 		err := cut.Write(buf, i)

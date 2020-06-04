@@ -86,7 +86,7 @@ func (t TypUUID) SizeOf(i interface{}) int {
 	return 16
 }
 
-func (t TypUUID) IsNullable() bool {
+func (t TypUUID) IsNilable() bool {
 	return false
 }
 

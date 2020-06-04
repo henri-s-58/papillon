@@ -76,7 +76,7 @@ func (t TypUINT32) SizeOf(i interface{}) int {
 	return 4
 }
 
-func (t TypUINT32) IsNullable() bool {
+func (t TypUINT32) IsNilable() bool {
 	return false
 }
 

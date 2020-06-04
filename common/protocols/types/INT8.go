@@ -77,7 +77,7 @@ func (t TypINT8) SizeOf(i interface{}) int {
 	return 1
 }
 
-func (t TypINT8) IsNullable() bool {
+func (t TypINT8) IsNilable() bool {
 	return false
 }
 

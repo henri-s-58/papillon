@@ -84,7 +84,7 @@ func (t TypBOOLEAN) SizeOf(i interface{}) int {
 	return 1
 }
 
-func (t TypBOOLEAN) IsNullable() bool {
+func (t TypBOOLEAN) IsNilable() bool {
 	return false
 }
 

@@ -99,7 +99,7 @@ func (t TypCOMPACT_STRING) SizeOf(i interface{}) int {
 	return support.SizeOfUnsignedVarint(l+1) + l
 }
 
-func (t TypCOMPACT_STRING) IsNullable() bool {
+func (t TypCOMPACT_STRING) IsNilable() bool {
 	return false
 }
 
