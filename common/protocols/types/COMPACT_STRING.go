@@ -96,7 +96,7 @@ func (t TypCOMPACT_STRING) Read(buf *bytes.Buffer) (interface{}, SchemaError) {
 
 func (t TypCOMPACT_STRING) SizeOf(i interface{}) int {
 	l := len(i.(string))
-	return support.SizeOfUnsignedVarint(l+1) + l
+	return support.SizeOfUnsignedVarint(uint(l+1)) + l
 }
 
 func (t TypCOMPACT_STRING) IsNilable() bool {

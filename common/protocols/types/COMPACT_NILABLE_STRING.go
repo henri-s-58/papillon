@@ -108,7 +108,7 @@ func (t TypCOMPACT_NILABLE_STRING) SizeOf(i interface{}) int {
 		return 1
 	}
 	l := len(i.(string))
-	return support.SizeOfUnsignedVarint(l+1) + l
+	return support.SizeOfUnsignedVarint(uint(l+1)) + l
 }
 
 func (t TypCOMPACT_NILABLE_STRING) IsNilable() bool {
