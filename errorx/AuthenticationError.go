@@ -1,8 +1,9 @@
 package errorx
 
 import (
-	"errors"
 	"fmt"
+
+	"github.com/henri-s-58/jalmot/v1"
 )
 
 type AuthenticationError interface {
@@ -10,9 +11,9 @@ type AuthenticationError interface {
 }
 
 func NewAuthenticationError(message string) AuthenticationError {
-	return AuthenticationError(errors.New(message))
+	return AuthenticationError(jalmot.New(message))
 }
 
 func NewAuthenticationErrorf(format string, args ...interface{}) AuthenticationError {
-	return AuthenticationError(errors.New(fmt.Sprintf(format, args...)))
+	return AuthenticationError(jalmot.New(fmt.Sprintf(format, args...)))
 }

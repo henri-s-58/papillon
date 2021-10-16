@@ -1,8 +1,9 @@
 package errorx
 
 import (
-	"errors"
 	"fmt"
+
+	"github.com/henri-s-58/jalmot/v1"
 )
 
 type IllegalStateError interface {
@@ -10,9 +11,9 @@ type IllegalStateError interface {
 }
 
 func NewIllegalStateError(message string) IllegalStateError {
-	return IllegalStateError(errors.New(message))
+	return IllegalStateError(jalmot.New(message))
 }
 
 func NewIllegalStateErrorf(format string, args ...interface{}) IllegalStateError {
-	return IllegalStateError(errors.New(fmt.Sprintf(format, args...)))
+	return IllegalStateError(jalmot.New(fmt.Sprintf(format, args...)))
 }

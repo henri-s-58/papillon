@@ -1,8 +1,11 @@
 # github.com/google/uuid v1.1.1
 ## explicit
 github.com/google/uuid
+# github.com/henri-s-58/jalmot v0.0.0-20211016032528-7ca7f7503e38
+## explicit; go 1.17
+github.com/henri-s-58/jalmot/v1
 # go.uber.org/atomic v1.6.0
-## explicit
+## explicit; go 1.13
 go.uber.org/atomic
 # gopkg.in/guregu/null.v4 v4.0.0
 ## explicit
